@@ -7,13 +7,17 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-@Table(name = "gares")
+@Table(schema = "gare")
 @Getter
 @Setter
 public class Gare {
     @Id
     @NotNull
+    @GeneratedValue
     public Long idGare;
     @NotNull
     public String nomGare;
@@ -22,14 +26,10 @@ public class Gare {
     @NotNull
     public int nombreQuais;
 
-    /**
-     * Constructeur sans argument requis par JPA.
-     */
-    public Gare() {
-    }
+    @OneToMany(mappedBy = "gare")
+    private List<CourseGare> courses = new ArrayList<>();
 
-    public Gare(Long idGare, String nomGare, String ville, int nombreQuais) {
-        this.idGare = idGare;
+    public Gares(String nomGare, String ville, int nombreQuais){
         this.nomGare = nomGare;
         this.ville = ville;
         this.nombreQuais = nombreQuais;

@@ -18,7 +18,7 @@ public class Train {
     @Column(nullable = false)
     private TypeMateriel type;
 
-    @Column(nullable = false)
+    @Column(name = "nombre_place", nullable = false)
     private int nombrePlace;
 
     @ManyToOne

@@ -3,9 +3,15 @@ package com.example.projettrain.dto;
 import com.example.projettrain.entities.Gare;
 import com.example.projettrain.entities.Train;
 import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.util.Date;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class CourseDTO {
     @NotNull
     private Date heureDepart;
@@ -17,17 +23,4 @@ public class CourseDTO {
     private Gare gareTerminus;
     @NotNull
     private Train train;
-
-    public CourseDTO(){
-
-    }
-
-    public CourseDTO(Date heureDepart, Date heureArrivee, Gare gareOrigine, Gare gareTerminus, Train train){
-        this.heureDepart = heureDepart;
-        this.heureArrivee = heureArrivee;
-        this.gareOrigine = gareOrigine;
-        this.gareTerminus = gareTerminus;
-        this.train = train;
-    }
-
 }

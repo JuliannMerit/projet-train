@@ -3,9 +3,15 @@ package com.example.projettrain.dto;
 import com.example.projettrain.entities.Habilitation;
 import com.example.projettrain.entities.Train;
 import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ConducteurDTO {
     @NotNull
     private Long id;
@@ -17,14 +23,4 @@ public class ConducteurDTO {
     private Habilitation habilitation;
     @NotNull
     private List<Train> trains;
-
-    public ConducteurDTO(){
-
-    }
-
-    public ConducteurDTO(String email, String numeroTel, Habilitation habilitation) {
-        this.email = email;
-        this.numeroTel = numeroTel;
-        this.habilitation = habilitation;
-    }
 }

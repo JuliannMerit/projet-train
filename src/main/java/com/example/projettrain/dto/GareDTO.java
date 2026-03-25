@@ -1,7 +1,13 @@
 package com.example.projettrain.dto;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class GareDTO {
 
     @NotNull
@@ -12,16 +18,4 @@ public class GareDTO {
     private String ville;
     @NotNull
     private int nombreQuais;
-
-    public GareDTO() {
-
-    }
-
-    public GareDTO(Long idGare, String nomGare, String ville, int nombreQuais) {
-        this.idGare = idGare;
-        this.nomGare = nomGare;
-        this.ville = ville;
-        this.nombreQuais = nombreQuais;
-    }
-
 }

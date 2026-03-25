@@ -1,7 +1,7 @@
 -- Insertion de conducteurs
-INSERT INTO conducteurs (cp, email, numero_tel, habilitation) VALUES (1, 'conducteur1@railway.com', '0123456789', 'TGV');
-INSERT INTO conducteurs (cp, email, numero_tel, habilitation) VALUES (2, 'conducteur2@railway.com', '0987654321', 'TER');
-INSERT INTO conducteurs (cp, email, numero_tel, habilitation) VALUES (3, 'conducteur3@railway.com', '0612345678', 'TOUT');
+INSERT INTO conducteurs (email, numero_tel, habilitation) VALUES ('conducteur1@railway.com', '0123456789', 'TGV');
+INSERT INTO conducteurs (email, numero_tel, habilitation) VALUES ('conducteur2@railway.com', '0987654321', 'TER');
+INSERT INTO conducteurs (email, numero_tel, habilitation) VALUES ('conducteur3@railway.com', '0612345678', 'TOUT');
 
 -- Insertion de trains
 

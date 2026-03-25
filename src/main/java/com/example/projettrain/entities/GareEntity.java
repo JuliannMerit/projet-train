@@ -18,7 +18,14 @@ public class GareEntity {
     @NotNull
     public String nomGare;
     @NotNull
-    public String Ville;
+    public String ville;
     @NotNull
     public int nombreQuais;
+
+    public GareEntity(Long idGare, String nomGare, String ville, int nombreQuais){
+        this.idGare = idGare;
+        this.nomGare = nomGare;
+        this.ville = ville;
+        this.nombreQuais = nombreQuais;
+    }
 }

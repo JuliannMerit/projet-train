@@ -144,16 +144,16 @@ class TrainTest {
     }
 
     @Test
-    @DisplayName("Nombre de places doit être un entier positif")
-    void testNombrePlacePositive() {
+    @DisplayName("Nombre de places accepte et stocke correctement des valeurs positives")
+    void testNombrePlaceAvecValeursPositives() {
         train.setNombrePlace(100);
-        assertTrue(train.getNombrePlace() >= 0);
+        assertEquals(100, train.getNombrePlace());
 
         train.setNombrePlace(1);
-        assertTrue(train.getNombrePlace() >= 0);
+        assertEquals(1, train.getNombrePlace());
 
         train.setNombrePlace(1000);
-        assertTrue(train.getNombrePlace() >= 0);
+        assertEquals(1000, train.getNombrePlace());
     }
 }
 

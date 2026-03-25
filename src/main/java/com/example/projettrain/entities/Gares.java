@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(schema = "gare")
+@Table(name = "gares")
 @Getter
 @Setter
 public class Gares {
@@ -27,5 +27,9 @@ public class Gares {
         this.nomGare = nomGare;
         this.ville = ville;
         this.nombreQuais = nombreQuais;
+    }
+
+    public Gares() {
+
     }
 }

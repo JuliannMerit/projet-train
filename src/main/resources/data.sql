@@ -9,3 +9,7 @@ INSERT INTO trains (type, nombre_place, conducteur_id) VALUES ('TER', 250, 2);
 INSERT INTO trains (type, nombre_place, conducteur_id) VALUES ('INTERCITES', 300, 1);
 INSERT INTO trains (type, nombre_place, conducteur_id) VALUES ('METRO', 150, 3);
 
+INSERT INTO gares (id_gare, nom_gare, ville, nombre_quais) VALUES ('1L', 'Nantes Est', 'Nantes', 5);
+INSERT INTO gares (id_gare, nom_gare, ville, nombre_quais) VALUES ('2L', 'Rennes Nord', 'Rennes', 3);
+INSERT INTO gares (id_gare, nom_gare, ville, nombre_quais) VALUES ('3L', 'Bordeaux Sud', 'Bordeaux', 5);
+INSERT INTO gares (id_gare, nom_gare, ville, nombre_quais) VALUES ('4L', 'Montparnasse', 'Paris', 15);

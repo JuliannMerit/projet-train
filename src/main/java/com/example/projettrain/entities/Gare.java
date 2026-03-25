@@ -11,7 +11,7 @@ import lombok.Setter;
 @Table(name = "gares")
 @Getter
 @Setter
-public class Gares {
+public class Gare {
     @Id
     @NotNull
     public Long idGare;
@@ -25,10 +25,10 @@ public class Gares {
     /**
      * Constructeur sans argument requis par JPA.
      */
-    public Gares() {
+    public Gare() {
     }
 
-    public Gares(Long idGare, String nomGare, String ville, int nombreQuais) {
+    public Gare(Long idGare, String nomGare, String ville, int nombreQuais) {
         this.idGare = idGare;
         this.nomGare = nomGare;
         this.ville = ville;

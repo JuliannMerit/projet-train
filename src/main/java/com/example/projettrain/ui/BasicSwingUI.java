@@ -1,6 +1,6 @@
 package com.example.projettrain.ui;
 
-import com.example.projettrain.entities.Gares;
+import com.example.projettrain.entities.Gare;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -43,13 +43,13 @@ public final class BasicSwingUI {
         frame.add(title, BorderLayout.NORTH);
 
         // Exemple de données (mock) : vous pourrez le remplacer par un appel à la BDD plus tard.
-        List<Gares> gares = List.of(
-                new Gares(1L, "Gare du Nord", "Paris", 36),
-                new Gares(2L, "Lyon Part-Dieu", "Lyon", 16),
-                new Gares(3L, "Gare Saint-Charles", "Marseille", 15)
+        List<Gare> gares = List.of(
+                new Gare(1L, "Gare du Nord", "Paris", 36),
+                new Gare(2L, "Lyon Part-Dieu", "Lyon", 16),
+                new Gare(3L, "Gare Saint-Charles", "Marseille", 15)
         );
 
-        JList<Gares> list = new JList<>(gares.toArray(Gares[]::new));
+        JList<Gare> list = new JList<>(gares.toArray(Gare[]::new));
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setVisibleRowCount(8);
 
@@ -61,7 +61,7 @@ public final class BasicSwingUI {
         JLabel status = new JLabel(" ");
 
         btn.addActionListener(e -> {
-            Gares selected = list.getSelectedValue();
+            Gare selected = list.getSelectedValue();
             if (selected == null) {
                 status.setText("Aucune gare sélectionnée");
             } else {

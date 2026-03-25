@@ -15,7 +15,11 @@ class ConducteurTest {
 
     @BeforeEach
     void setUp() {
-        conducteur = new Conducteur("email@example.com", "0123456789", Habilitation.TGV);
+        conducteur = Conducteur.builder()
+                .email("email@example.com")
+                .numeroTel("0123456789")
+                .habilitation(Habilitation.TGV)
+                .build();
     }
 
     @Test
@@ -78,8 +82,8 @@ class ConducteurTest {
     @DisplayName("Getter et Setter pour Liste de Trains")
     void testTrainsGetterSetter() {
         List<Train> trains = new ArrayList<>();
-        trains.add(new Train(TypeMateriel.TGV, 300, conducteur));
-        trains.add(new Train(TypeMateriel.TER, 200, conducteur));
+        trains.add(Train.builder().type(TypeMateriel.TGV).nombrePlace(300).conducteur(conducteur).build());
+        trains.add(Train.builder().type(TypeMateriel.TER).nombrePlace(200).conducteur(conducteur).build());
 
         conducteur.setTrains(trains);
 
@@ -92,9 +96,9 @@ class ConducteurTest {
     @DisplayName("Un conducteur peut avoir plusieurs trains")
     void testConducteurMultipleTrains() {
         List<Train> trains = new ArrayList<>();
-        Train train1 = new Train(TypeMateriel.TGV, 400, conducteur);
-        Train train2 = new Train(TypeMateriel.INTERCITES, 250, conducteur);
-        Train train3 = new Train(TypeMateriel.TER, 150, conducteur);
+        Train train1 = Train.builder().type(TypeMateriel.TGV).nombrePlace(400).conducteur(conducteur).build();
+        Train train2 = Train.builder().type(TypeMateriel.INTERCITES).nombrePlace(250).conducteur(conducteur).build();
+        Train train3 = Train.builder().type(TypeMateriel.TER).nombrePlace(150).conducteur(conducteur).build();
 
         trains.add(train1);
         trains.add(train2);

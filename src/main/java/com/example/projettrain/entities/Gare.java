@@ -1,19 +1,22 @@
 package com.example.projettrain.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "gare")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Gare {
     @Id
-    @NotNull
+    @GeneratedValue
     public Long idGare;
     @NotNull
     public String nomGare;
@@ -22,18 +25,8 @@ public class Gare {
     @NotNull
     public int nombreQuais;
 
-    /**
-     * Constructeur sans argument requis par JPA.
-     */
-    public Gare() {
-    }
-
-    public Gare(Long idGare, String nomGare, String ville, int nombreQuais) {
-        this.idGare = idGare;
-        this.nomGare = nomGare;
-        this.ville = ville;
-        this.nombreQuais = nombreQuais;
-    }
+    @OneToMany(mappedBy = "gare")
+    private List<CourseGare> courses = new ArrayList<>();
 
     @Override
     public String toString() {

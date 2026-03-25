@@ -44,9 +44,9 @@ public final class BasicSwingUI {
 
         // Exemple de données (mock) : vous pourrez le remplacer par un appel à la BDD plus tard.
         List<Gare> gares = List.of(
-                new Gare(1L, "Gare du Nord", "Paris", 36),
-                new Gare(2L, "Lyon Part-Dieu", "Lyon", 16),
-                new Gare(3L, "Gare Saint-Charles", "Marseille", 15)
+                Gare.builder().idGare(1L).nomGare("Gare du Nord").ville("Paris").nombreQuais(36).build(),
+                Gare.builder().idGare(2L).nomGare("Lyon Part-Dieu").ville("Lyon").nombreQuais(16).build(),
+                Gare.builder().idGare(3L).nomGare("Gare Saint-Charles").ville("Marseille").nombreQuais(15).build()
         );
 
         JList<Gare> list = new JList<>(gares.toArray(Gare[]::new));

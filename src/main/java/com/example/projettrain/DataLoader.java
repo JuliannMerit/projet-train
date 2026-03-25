@@ -17,5 +17,10 @@ public class DataLoader {
     public CommandLineRunner loadData() {
         return args -> logger.info("Base de données H2 initialisée avec les données de test");
     }
+
+    @Bean
+    public void RecupereLEtatDUneGare() {
+
+    }
 }
 

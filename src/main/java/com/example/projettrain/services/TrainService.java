@@ -17,7 +17,8 @@ public class TrainService {
     public TrainDTO create(TrainDTO trainDTO) {
         final var trainEntityBuilder = Train.builder()
                 .type(trainDTO.getType())
-                .nombrePlace(trainDTO.getNombrePlaces());
+                .nombrePlace(trainDTO.getNombrePlaces())
+                .conducteur(trainDTO.getConducteur());
 
         final var createdTrainEntity = this.trainRepository.save(trainEntityBuilder.build());
         return this.entityToDto(createdTrainEntity);

@@ -30,11 +30,11 @@ public class Course {
     
     @ManyToOne
     @JoinColumn(name = "gare_origine_id")
-    private Gares gareOrigine;
+    private Gare gareOrigine;
     
     @ManyToOne
     @JoinColumn(name = "gare_terminus_id")
-    private Gares gareTerminus;
+    private Gare gareTerminus;
 
     /**
      * Parcours complet de la course via table intermédiaire (CourseGare).

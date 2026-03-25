@@ -60,7 +60,7 @@ class CourseTest {
     @Test
     @DisplayName("Getter et Setter pour gareOrigine")
     void testGareOrigineGetterSetter() {
-        Gares origine = Gares.builder()
+        Gare origine = Gare.builder()
                 .nomGare("Gare A")
                 .ville("Ville A")
                 .nombreQuais(3)
@@ -73,7 +73,7 @@ class CourseTest {
     @Test
     @DisplayName("Getter et Setter pour gareTerminus")
     void testGareTerminusGetterSetter() {
-        Gares terminus = Gares.builder()
+        Gare terminus = Gare.builder()
                 .nomGare("Gare B")
                 .ville("Ville B")
                 .nombreQuais(4)

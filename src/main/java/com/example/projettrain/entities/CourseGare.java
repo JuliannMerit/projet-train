@@ -41,7 +41,7 @@ public class CourseGare {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId("gareId")
     @JoinColumn(name = "gare_id", nullable = false)
-    private Gares gare;
+    private Gare gare;
 
     /**
      * Position de la gare dans le parcours (1..n).

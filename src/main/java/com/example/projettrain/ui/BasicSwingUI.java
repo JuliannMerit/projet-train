@@ -53,7 +53,7 @@ public final class BasicSwingUI {
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setVisibleRowCount(8);
 
-        // Par défaut, JList affiche toString(). On ajoute un rendu simple via toString() ci-dessous.
+        // Par défaut, JList utilise Gares#toString() pour afficher chaque élément.
         frame.add(new JScrollPane(list), BorderLayout.CENTER);
 
         JPanel actions = new JPanel(new FlowLayout(FlowLayout.RIGHT));

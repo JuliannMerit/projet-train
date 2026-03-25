@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class DatabaseTest {
+public class GaresTest {
 
     @Test
     public void creeDesInstancesDansLaTableGares(){

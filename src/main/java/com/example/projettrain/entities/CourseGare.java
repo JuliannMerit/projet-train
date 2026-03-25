@@ -2,8 +2,7 @@ package com.example.projettrain.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * Table intermédiaire entre Course et Gares.
@@ -24,6 +23,9 @@ import lombok.Setter;
 )
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CourseGare {
 
     @EmbeddedId
@@ -46,15 +48,6 @@ public class CourseGare {
      */
     @Column(name = "ordre", nullable = false)
     private int ordre;
-
-    public CourseGare() {
-    }
-
-    public CourseGare(Course course, Gares gare, int ordre) {
-        this.course = course;
-        this.gare = gare;
-        this.ordre = ordre;
-    }
 }
 
 

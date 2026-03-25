@@ -14,6 +14,9 @@ import java.util.List;
 @Table(schema = "gare")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Gare {
     @Id
     @GeneratedValue
@@ -27,12 +30,6 @@ public class Gare {
 
     @OneToMany(mappedBy = "gare")
     private List<CourseGare> courses = new ArrayList<>();
-
-    public Gares(String nomGare, String ville, int nombreQuais){
-        this.nomGare = nomGare;
-        this.ville = ville;
-        this.nombreQuais = nombreQuais;
-    }
 
     @Override
     public String toString() {

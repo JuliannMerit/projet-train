@@ -60,7 +60,11 @@ class CourseTest {
     @Test
     @DisplayName("Getter et Setter pour gareOrigine")
     void testGareOrigineGetterSetter() {
-        Gares origine = new Gares("Gare A", "Ville A", 3);
+        Gares origine = Gares.builder()
+                .nomGare("Gare A")
+                .ville("Ville A")
+                .nombreQuais(3)
+                .build();
         course.setGareOrigine(origine);
         assertEquals(origine, course.getGareOrigine());
         assertEquals("Gare A", course.getGareOrigine().getNomGare());
@@ -69,7 +73,11 @@ class CourseTest {
     @Test
     @DisplayName("Getter et Setter pour gareTerminus")
     void testGareTerminusGetterSetter() {
-        Gares terminus = new Gares("Gare B", "Ville B", 4);
+        Gares terminus = Gares.builder()
+                .nomGare("Gare B")
+                .ville("Ville B")
+                .nombreQuais(4)
+                .build();
         course.setGareTerminus(terminus);
         assertEquals(terminus, course.getGareTerminus());
         assertEquals("Ville B", course.getGareTerminus().getVille());
@@ -88,8 +96,16 @@ class CourseTest {
     @Test
     @DisplayName("Getter et Setter pour train")
     void testTrainGetterSetter() {
-        Conducteur conducteur = new Conducteur("c1@example.com", "0102030405", Habilitation.TGV);
-        Train train = new Train(TypeMateriel.TGV, 400, conducteur);
+        Conducteur conducteur = Conducteur.builder()
+                .email("c1@example.com")
+                .numeroTel("0102030405")
+                .habilitation(Habilitation.TGV)
+                .build();
+        Train train = Train.builder()
+                .type(TypeMateriel.TGV)
+                .nombrePlace(400)
+                .conducteur(conducteur)
+                .build();
 
         course.setTrain(train);
         assertEquals(train, course.getTrain());

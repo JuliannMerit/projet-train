@@ -2,8 +2,7 @@ package com.example.projettrain.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -14,6 +13,9 @@ import java.util.Objects;
 @Embeddable
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CourseGareId implements Serializable {
 
     @Column(name = "course_id")
@@ -21,14 +23,6 @@ public class CourseGareId implements Serializable {
 
     @Column(name = "gare_id")
     private Long gareId;
-
-    public CourseGareId() {
-    }
-
-    public CourseGareId(Long courseId, Long gareId) {
-        this.courseId = courseId;
-        this.gareId = gareId;
-    }
 
     @Override
     public boolean equals(Object o) {

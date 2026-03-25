@@ -11,7 +11,7 @@ import lombok.Setter;
 @Table(schema = "gare")
 @Getter
 @Setter
-public class GareEntity {
+public class Gares {
     @Id
     @NotNull
     public Long idGare;
@@ -22,7 +22,7 @@ public class GareEntity {
     @NotNull
     public int nombreQuais;
 
-    public GareEntity(Long idGare, String nomGare, String ville, int nombreQuais){
+    public Gares(Long idGare, String nomGare, String ville, int nombreQuais){
         this.idGare = idGare;
         this.nomGare = nomGare;
         this.ville = ville;

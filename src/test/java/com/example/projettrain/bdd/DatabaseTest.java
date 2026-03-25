@@ -1,6 +1,6 @@
 package com.example.projettrain.bdd;
 
-import com.example.projettrain.entities.GareEntity;
+import com.example.projettrain.entities.Gares;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -9,7 +9,7 @@ public class DatabaseTest {
 
     @Test
     public void creeDesInstancesDansLaTableGares(){
-        GareEntity tableGares = new GareEntity(1234L, "Nantes Est", "Nantes", 5);
+        Gares tableGares = new Gares(1234L, "Nantes Est", "Nantes", 5);
         tableGares.setIdGare(1234L);
         tableGares.setNomGare("Nantes Est");
         tableGares.setVille("Nantes");

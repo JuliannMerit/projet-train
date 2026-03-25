@@ -14,8 +14,16 @@ class TrainTest {
 
     @BeforeEach
     void setUp() {
-        conducteur = new Conducteur("conducteur@example.com", "0123456789", Habilitation.TGV);
-        train = new Train(TypeMateriel.TGV, 400, conducteur);
+        conducteur = Conducteur.builder()
+                .email("conducteur@example.com")
+                .numeroTel("0123456789")
+                .habilitation(Habilitation.TGV)
+                .build();
+        train = Train.builder()
+                .type(TypeMateriel.TGV)
+                .nombrePlace(400)
+                .conducteur(conducteur)
+                .build();
     }
 
     @Test
@@ -73,7 +81,11 @@ class TrainTest {
     @Test
     @DisplayName("Getter et Setter pour Conducteur")
     void testConducteurGetterSetter() {
-        Conducteur newConducteur = new Conducteur("new@example.com", "9876543210", Habilitation.TER);
+        Conducteur newConducteur = Conducteur.builder()
+                .email("new@example.com")
+                .numeroTel("9876543210")
+                .habilitation(Habilitation.TER)
+                .build();
         train.setConducteur(newConducteur);
 
         assertEquals(newConducteur, train.getConducteur());
@@ -110,7 +122,11 @@ class TrainTest {
     @DisplayName("Le conducteur peut être changé")
     void testConducteurChange() {
         Conducteur firstConducteur = train.getConducteur();
-        Conducteur secondConducteur = new Conducteur("second@example.com", "5555555555", Habilitation.INTERCITES);
+        Conducteur secondConducteur = Conducteur.builder()
+                .email("second@example.com")
+                .numeroTel("5555555555")
+                .habilitation(Habilitation.INTERCITES)
+                .build();
 
         train.setConducteur(secondConducteur);
 
@@ -121,8 +137,16 @@ class TrainTest {
     @Test
     @DisplayName("Creer plusieurs trains avec le même conducteur")
     void testMultipleTrainsWithSameConductor() {
-        Train train2 = new Train(TypeMateriel.TER, 250, conducteur);
-        Train train3 = new Train(TypeMateriel.METRO, 150, conducteur);
+        Train train2 = Train.builder()
+                .type(TypeMateriel.TER)
+                .nombrePlace(250)
+                .conducteur(conducteur)
+                .build();
+        Train train3 = Train.builder()
+                .type(TypeMateriel.METRO)
+                .nombrePlace(150)
+                .conducteur(conducteur)
+                .build();
 
         assertEquals(conducteur, train.getConducteur());
         assertEquals(conducteur, train2.getConducteur());

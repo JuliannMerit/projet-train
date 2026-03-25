@@ -20,10 +20,14 @@ class TrainConducteurIntegrationTest {
 
     @BeforeEach
     void setUp() {
-        conducteur = new Conducteur("captain@railway.com", "0612345678", Habilitation.TOUT);
-        train1 = new Train(TypeMateriel.TGV, 400, conducteur);
-        train2 = new Train(TypeMateriel.TER, 250, conducteur);
-        train3 = new Train(TypeMateriel.INTERCITES, 300, conducteur);
+        conducteur = Conducteur.builder()
+                .email("captain@railway.com")
+                .numeroTel("0612345678")
+                .habilitation(Habilitation.TOUT)
+                .build();
+        train1 = Train.builder().type(TypeMateriel.TGV).nombrePlace(400).conducteur(conducteur).build();
+        train2 = Train.builder().type(TypeMateriel.TER).nombrePlace(250).conducteur(conducteur).build();
+        train3 = Train.builder().type(TypeMateriel.INTERCITES).nombrePlace(300).conducteur(conducteur).build();
     }
 
     @Test
@@ -111,7 +115,11 @@ class TrainConducteurIntegrationTest {
     @Test
     @DisplayName("Changer le conducteur d'un train")
     void testChangeConductorForTrain() {
-        Conducteur newConductor = new Conducteur("newcaptain@railway.com", "0698765432", Habilitation.TER);
+        Conducteur newConductor = Conducteur.builder()
+                .email("newcaptain@railway.com")
+                .numeroTel("0698765432")
+                .habilitation(Habilitation.TER)
+                .build();
 
         train1.setConducteur(newConductor);
 
@@ -150,11 +158,19 @@ class TrainConducteurIntegrationTest {
     @Test
     @DisplayName("Créer plusieurs conducteurs avec leurs propres trains")
     void testMultipleConductorsWithTheirTrains() {
-        Conducteur conductor1 = new Conducteur("conductor1@railway.com", "0611111111", Habilitation.TGV);
-        Conducteur conductor2 = new Conducteur("conductor2@railway.com", "0622222222", Habilitation.TER);
+        Conducteur conductor1 = Conducteur.builder()
+                .email("conductor1@railway.com")
+                .numeroTel("0611111111")
+                .habilitation(Habilitation.TGV)
+                .build();
+        Conducteur conductor2 = Conducteur.builder()
+                .email("conductor2@railway.com")
+                .numeroTel("0622222222")
+                .habilitation(Habilitation.TER)
+                .build();
 
-        Train trainC1 = new Train(TypeMateriel.TGV, 400, conductor1);
-        Train trainC2 = new Train(TypeMateriel.TER, 250, conductor2);
+        Train trainC1 = Train.builder().type(TypeMateriel.TGV).nombrePlace(400).conducteur(conductor1).build();
+        Train trainC2 = Train.builder().type(TypeMateriel.TER).nombrePlace(250).conducteur(conductor2).build();
 
         List<Train> trainsC1 = new ArrayList<>();
         trainsC1.add(trainC1);

@@ -1,8 +1,7 @@
 package com.example.projettrain.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -10,6 +9,9 @@ import java.util.List;
 @Table(name = "conducteurs")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Conducteur {
 
     @Id
@@ -28,19 +30,5 @@ public class Conducteur {
 
     @OneToMany(mappedBy = "conducteur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Train> trains;
-
-    // Constructeurs
-    public Conducteur() {
-    }
-
-    public Conducteur(String email, String numeroTel, Habilitation habilitation) {
-        this.email = email;
-        this.numeroTel = numeroTel;
-        this.habilitation = habilitation;
-    }
-
-
-
-
 }
 

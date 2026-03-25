@@ -1,13 +1,15 @@
 package com.example.projettrain.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "trains")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Train {
 
     @Id
@@ -24,16 +26,4 @@ public class Train {
     @ManyToOne
     @JoinColumn(name = "conducteur_id", nullable = false)
     private Conducteur conducteur;
-
-    // Constructeurs
-    public Train() {
-    }
-
-    public Train(TypeMateriel type, int nombrePlace, Conducteur conducteur) {
-        this.type = type;
-        this.nombrePlace = nombrePlace;
-        this.conducteur = conducteur;
-    }
-
-
 }

@@ -9,7 +9,11 @@ public class GaresTest {
 
     @Test
     public void creeDesInstancesDansLaTableGares(){
-        Gares tableGares = new Gares("Nantes Est", "Nantes", 5);
+        Gares tableGares = Gares.builder()
+                .nomGare("Nantes Est")
+                .ville("Nantes")
+                .nombreQuais(5)
+                .build();
         tableGares.setIdGare(1234L);
         tableGares.setNomGare("Nantes Est");
         tableGares.setVille("Nantes");

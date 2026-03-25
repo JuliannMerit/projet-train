@@ -2,8 +2,7 @@ package com.example.projettrain.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +11,9 @@ import java.util.List;
 @Table(name = "gares")
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Gares {
     @Id
     @GeneratedValue
@@ -25,14 +27,4 @@ public class Gares {
 
     @OneToMany(mappedBy = "gare")
     private List<CourseGare> courses = new ArrayList<>();
-
-    public Gares(String nomGare, String ville, int nombreQuais){
-        this.nomGare = nomGare;
-        this.ville = ville;
-        this.nombreQuais = nombreQuais;
-    }
-
-    public Gares() {
-
-    }
 }

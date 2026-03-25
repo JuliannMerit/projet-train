@@ -19,11 +19,11 @@ public class Course {
     private Long id;
     
     @NotNull
-    @Column(name = "heure_depart")
+    @Column(name = "heure_depart", nullable = false)
     private LocalDateTime heureDepart;
     
     @NotNull
-    @Column(name = "heure_arrivee")
+    @Column(name = "heure_arrivee", nullable = false)
     private LocalDateTime heureArrivee;
     
     @ManyToOne

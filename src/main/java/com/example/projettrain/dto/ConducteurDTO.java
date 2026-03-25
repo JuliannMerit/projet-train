@@ -17,4 +17,14 @@ public class ConducteurDTO {
     private Habilitation habilitation;
     @NotNull
     private List<Train> trains;
+
+    public ConducteurDTO(){
+
+    }
+
+    public ConducteurDTO(String email, String numeroTel, Habilitation habilitation) {
+        this.email = email;
+        this.numeroTel = numeroTel;
+        this.habilitation = habilitation;
+    }
 }

@@ -18,4 +18,16 @@ public class CourseDTO {
     @NotNull
     private Train train;
 
+    public CourseDTO(){
+
+    }
+
+    public CourseDTO(Date heureDepart, Date heureArrivee, Gare gareOrigine, Gare gareTerminus, Train train){
+        this.heureDepart = heureDepart;
+        this.heureArrivee = heureArrivee;
+        this.gareOrigine = gareOrigine;
+        this.gareTerminus = gareTerminus;
+        this.train = train;
+    }
+
 }

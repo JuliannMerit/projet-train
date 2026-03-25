@@ -13,4 +13,14 @@ public class TrainDTO {
     private int nombrePlaces;
     @NotNull
     private Conducteur conducteur;
+
+    public TrainDTO() {
+    }
+
+    public TrainDTO(TypeMateriel type, int nombrePlaces, Conducteur conducteur) {
+        this.type = type;
+        this.nombrePlaces = nombrePlaces;
+        this.conducteur = conducteur;
+    }
+
 }

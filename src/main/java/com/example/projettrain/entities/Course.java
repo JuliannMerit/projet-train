@@ -31,7 +31,7 @@ public class Course {
     @ManyToOne
     @JoinColumn(name = "gare_origine_id")
     private Gare gareOrigine;
-    
+
     @ManyToOne
     @JoinColumn(name = "gare_terminus_id")
     private Gare gareTerminus;

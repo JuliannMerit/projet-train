@@ -16,7 +16,6 @@ import java.util.List;
 @Setter
 public class Gare {
     @Id
-    @NotNull
     @GeneratedValue
     public Long idGare;
     @NotNull

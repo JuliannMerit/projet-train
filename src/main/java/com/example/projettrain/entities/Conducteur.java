@@ -39,9 +39,5 @@ public class Conducteur {
         this.numeroTel = numeroTel;
         this.habilitation = habilitation;
     }
-
-
-
-
 }
 

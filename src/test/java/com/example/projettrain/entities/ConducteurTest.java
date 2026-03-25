@@ -22,7 +22,7 @@ class ConducteurTest {
     @DisplayName("Constructeur par défaut crée un conducteur")
     void testConstructorDefault() {
         Conducteur conducteur2 = new Conducteur();
-        assertNull(conducteur2.getCp());
+        assertNull(conducteur2.getId());
         assertNull(conducteur2.getEmail());
         assertNull(conducteur2.getNumeroTel());
         assertNull(conducteur2.getHabilitation());
@@ -41,8 +41,8 @@ class ConducteurTest {
     @DisplayName("Getter et Setter pour CP (identifiant)")
     void testCpGetterSetter() {
         Long cp = 1L;
-        conducteur.setCp(cp);
-        assertEquals(cp, conducteur.getCp());
+        conducteur.setId(cp);
+        assertEquals(cp, conducteur.getId());
     }
 
     @Test

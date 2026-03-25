@@ -3,14 +3,12 @@ package com.example.projettrain.entities;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.springframework.test.context.ActiveProfiles;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Tests pour la classe Conducteur")
-@ActiveProfiles("test")
 class ConducteurTest {
 
     private Conducteur conducteur;

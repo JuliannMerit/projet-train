@@ -1,6 +1,6 @@
 package com.example.projettrain.bdd;
 
-import com.example.projettrain.entities.Gares;
+import com.example.projettrain.entities.Gare;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

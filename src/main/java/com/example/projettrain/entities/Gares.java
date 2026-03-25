@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(schema = "gare")
+@Table(name = "gares")
 @Getter
 @Setter
 public class Gares {
@@ -38,5 +38,5 @@ public class Gares {
     @Override
     public String toString() {
         return nomGare + " - " + ville + " (" + nombreQuais + " quais)";
-    }
+
 }

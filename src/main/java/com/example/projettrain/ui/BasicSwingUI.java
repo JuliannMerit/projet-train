@@ -65,7 +65,7 @@ public final class BasicSwingUI {
             if (selected == null) {
                 status.setText("Aucune gare sélectionnée");
             } else {
-                status.setText("Sélection : " + selected.nomGare + " (" + selected.ville + ")");
+                status.setText("Sélection : " + selected.getNomGare() + " (" + selected.getVille() + ")");
             }
         });
 

@@ -22,14 +22,21 @@ public class Gares {
     @NotNull
     public int nombreQuais;
 
-    public Gares(Long idGare, String nomGare, String ville, int nombreQuais){
+    /**
+     * Constructeur sans argument requis par JPA.
+     */
+    public Gares() {
+    }
+
+    public Gares(Long idGare, String nomGare, String ville, int nombreQuais) {
         this.idGare = idGare;
         this.nomGare = nomGare;
         this.ville = ville;
         this.nombreQuais = nombreQuais;
     }
 
-    public Gares() {
+    @Override
+    public String toString() {
+        return nomGare + " - " + ville + " (" + nombreQuais + " quais)";
 
-    }
 }

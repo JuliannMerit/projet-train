@@ -39,5 +39,16 @@ public class Conducteur {
         this.numeroTel = numeroTel;
         this.habilitation = habilitation;
     }
-}
 
+    /**
+     * Alias métier pour l'identifiant (colonne "cp").
+     * Les tests existants attendent getCp()/setCp().
+     */
+    public Long getCp() {
+        return this.id;
+    }
+
+    public void setCp(Long cp) {
+        this.id = cp;
+    }
+}

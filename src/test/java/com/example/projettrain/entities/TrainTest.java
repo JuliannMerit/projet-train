@@ -3,12 +3,10 @@ package com.example.projettrain.entities;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Tests pour la classe Train")
-@ActiveProfiles("test")
 class TrainTest {
 
     private Train train;

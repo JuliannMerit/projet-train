@@ -14,13 +14,12 @@ public class Conducteur {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cp")
     private Long id;
 
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "numero_tel", nullable = false)
     private String numeroTel;
 
     @Enumerated(EnumType.STRING)

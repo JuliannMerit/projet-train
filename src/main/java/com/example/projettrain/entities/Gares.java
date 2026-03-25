@@ -1,19 +1,21 @@
 package com.example.projettrain.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-@Table(schema = "gare")
+@Table(name = "gares")
 @Getter
 @Setter
 public class Gares {
     @Id
     @NotNull
+    @GeneratedValue
     public Long idGare;
     @NotNull
     public String nomGare;
@@ -22,10 +24,16 @@ public class Gares {
     @NotNull
     public int nombreQuais;
 
-    public Gares(Long idGare, String nomGare, String ville, int nombreQuais){
-        this.idGare = idGare;
+    @OneToMany(mappedBy = "gare")
+    private List<CourseGare> courses = new ArrayList<>();
+
+    public Gares(String nomGare, String ville, int nombreQuais){
         this.nomGare = nomGare;
         this.ville = ville;
         this.nombreQuais = nombreQuais;
+    }
+
+    public Gares() {
+
     }
 }

@@ -38,5 +38,5 @@ public class Gares {
     @Override
     public String toString() {
         return nomGare + " - " + ville + " (" + nombreQuais + " quais)";
-
+    }
 }

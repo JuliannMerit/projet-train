@@ -54,12 +54,6 @@ public class CourseGare {
         this.course = course;
         this.gare = gare;
         this.ordre = ordre;
-        if (course != null) {
-            this.id.setCourseId(course.getId());
-        }
-        if (gare != null) {
-            this.id.setGareId(gare.getIdGare());
-        }
     }
 }
 

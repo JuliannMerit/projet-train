@@ -1,6 +1,9 @@
 package com.example.projettrain.api;
 
+import com.example.projettrain.api.error.Exceptions;
 import com.example.projettrain.api.error.GlobalExceptionHandler;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.context.ActiveProfiles;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -64,10 +67,12 @@ class GlobalExceptionHandlerTest {
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status").value(400))
                 .andExpect(jsonPath("$.error").value("Bad Request"))
-                .andExpect(jsonPath("$.message").exists())
+                .andExpect(jsonPath("$.message").value("Validation error"))
                 .andExpect(jsonPath("$.path").value("/api/demo/gares/0"))
                 .andExpect(jsonPath("$.timestamp").exists())
-                .andExpect(jsonPath("$.fieldErrors").doesNotExist());
+                .andExpect(jsonPath("$.fieldErrors").isArray())
+                .andExpect(jsonPath("$.fieldErrors[0].field").exists())
+                .andExpect(jsonPath("$.fieldErrors[0].message").exists());
     }
 
     @Test
@@ -98,6 +103,36 @@ class GlobalExceptionHandlerTest {
                 .andExpect(jsonPath("$.fieldErrors").doesNotExist());
     }
 
+    @Test
+    @DisplayName("ConflictException -> 409 + ApiError JSON")
+    void conflict_shouldReturn409ApiError() throws Exception {
+        mockMvc.perform(get("/api/test/conflict"))
+                .andExpect(status().isConflict())
+                .andExpect(jsonPath("$.status").value(409))
+                .andExpect(jsonPath("$.error").value("Conflict"))
+                .andExpect(jsonPath("$.message").value("Conflit métier"))
+                .andExpect(jsonPath("$.path").value("/api/test/conflict"))
+                .andExpect(jsonPath("$.timestamp").exists())
+                .andExpect(jsonPath("$.fieldErrors").doesNotExist());
+    }
+
+    @Test
+    @DisplayName("Validation @Valid @RequestBody -> 400 + fieldErrors")
+    void methodArgumentNotValid_shouldReturn400WithFieldErrors() throws Exception {
+        mockMvc.perform(post("/api/test/validate")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value(400))
+                .andExpect(jsonPath("$.error").value("Bad Request"))
+                .andExpect(jsonPath("$.message").value("Validation error"))
+                .andExpect(jsonPath("$.path").value("/api/test/validate"))
+                .andExpect(jsonPath("$.timestamp").exists())
+                .andExpect(jsonPath("$.fieldErrors").isArray())
+                .andExpect(jsonPath("$.fieldErrors[0].field").value("name"))
+                .andExpect(jsonPath("$.fieldErrors[0].message").exists());
+    }
+
     /**
      * Petit contrôleur de test pour déclencher:
      * - HttpMessageNotReadableException via désérialisation JSON
@@ -117,7 +152,20 @@ class GlobalExceptionHandlerTest {
             throw new RuntimeException("boom");
         }
 
+        @org.springframework.web.bind.annotation.GetMapping("/conflict")
+        public String conflict() {
+            throw new Exceptions.ConflictException("Conflit métier");
+        }
+
+        @PostMapping("/validate")
+        public String validate(@Valid @RequestBody ValidBody body) {
+            return body.name();
+        }
+
         record EchoBody(String value) {
+        }
+
+        record ValidBody(@NotBlank String name) {
         }
     }
 }

@@ -1,7 +1,10 @@
 package com.example.projettrain.api.error;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.Instant;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -20,6 +24,8 @@ import java.util.List;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(Exceptions.NotFoundException.class)
     public ResponseEntity<ApiError> handleNotFound(Exceptions.NotFoundException ex, HttpServletRequest request) {
@@ -46,8 +52,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ApiError> handleConstraintViolation(ConstraintViolationException ex, HttpServletRequest request) {
-        // Gardé simple : message global
-        return build(HttpStatus.BAD_REQUEST, ex.getMessage(), request.getRequestURI(), null);
+        List<ApiError.ApiFieldError> fieldErrors = ex.getConstraintViolations().stream()
+                .sorted(Comparator.comparing(v -> v.getPropertyPath().toString()))
+                .map(this::toApiFieldError)
+                .toList();
+        return build(HttpStatus.BAD_REQUEST, "Validation error", request.getRequestURI(), fieldErrors);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
@@ -57,7 +66,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> handleGeneric(Exception ex, HttpServletRequest request) {
-        // Par défaut, on évite d'exposer le stacktrace.
+        LOGGER.error("Unhandled exception on {} {}", request.getMethod(), request.getRequestURI(), ex);
         return build(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error", request.getRequestURI(), null);
     }
 
@@ -80,6 +89,13 @@ public class GlobalExceptionHandler {
         }
         return new ApiError.ApiFieldError(fieldError.getField(), msg);
     }
+
+    private ApiError.ApiFieldError toApiFieldError(ConstraintViolation<?> violation) {
+        String field = violation.getPropertyPath() == null ? "" : violation.getPropertyPath().toString();
+        String message = violation.getMessage();
+        if (message == null || message.isBlank()) {
+            message = "Invalid value";
+        }
+        return new ApiError.ApiFieldError(field, message);
+    }
 }
-
-

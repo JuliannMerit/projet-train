@@ -5,6 +5,7 @@ import com.example.projettrain.entities.Train;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -14,9 +15,11 @@ import java.util.Date;
 @Builder
 public class CourseDTO {
     @NotNull
-    private Date heureDepart;
+    private Long id;
     @NotNull
-    private Date heureArrivee;
+    private LocalDateTime heureDepart;
+    @NotNull
+    private LocalDateTime heureArrivee;
     @NotNull
     private Gare gareOrigine;
     @NotNull
